@@ -2,58 +2,48 @@
   <div
     class="bg-gray-900 min-h-screen flex flex-col justify-center items-center"
   >
-    <div class="text-4xl font-bold mb-8 border-b-4 border-white text-white">
-      Typing Game
-    </div>
-    <button
-      v-if="startFlg != true"
-      class="py-4 px-8 bg-blue-500 text-white rounded-full hover:bg-blue-700 focus:outline-none mx-auto"
-      @click="gameStart"
-    >
-      START
-    </button>
+    <TitleComponent />
+    <StartButtonComponent v-if="!startFlg" @game-start="gameStart" />
     <div v-if="startFlg" class="flex flex-col justify-center items-center">
-      <div class="py-16 text-5xl text-white">{{ current_question }}</div>
-      <div
-        v-if="current_question_counts == question_count"
-        class="py-16 text-4xl clear text-blue-500"
-      >
-        Clear!
-      </div>
-      <div
-        v-if="current_question_counts == question_count"
-        class="py-16 text-4xl clear text-blue-500"
-      >
-        {{ elapsedTime }}秒
-      </div>
-      <button
-        v-if="current_question_counts == question_count"
-        class="py-4 px-8 bg-blue-500 text-white rounded-full hover:bg-blue-700 focus:outline-none mx-auto"
-        @click="restartGame"
-      >
-        PLAY AGAIN
-      </button>
-      <div class="typeFormWrapper mb-20">
-        <input
-          v-if="current_question_counts != question_count"
-          id="typeForm"
-          v-model="typeBox"
-          type="text"
-          class="typeForm text-white font-bold text-lg text-center bg-transparent border-b-2 border-white w-64 focus:outline-none"
-          name=""
-        />
-      </div>
-      <div class="gaugeWrapper mb-20">
-        <div :style="styleObject" class="gauge"></div>
-      </div>
-      <div class="text-white text-2xl">
-        {{ current_question_counts }} / {{ question_count }}
-      </div>
+      <CurrentQuestionComponent
+        :currentQuestion="current_question"
+        :isLastQuestion="current_question_counts === question_count"
+      />
+      <ClearMessageComponent
+        v-if="current_question_counts === question_count"
+      />
+      <ElapsedTimeComponent
+        v-if="current_question_counts === question_count"
+        :elapsedTime="elapsedTime"
+      />
+      <PlayAgainButtonComponent
+        v-if="current_question_counts === question_count"
+        @restart-game="restartGame"
+      />
+      <TypeFormComponent
+        v-if="current_question_counts !== question_count"
+        v-model="typeBox"
+      />
+      <GaugeComponent :styleObject="styleObject" />
+      <QuestionCounterComponent
+        :currentQuestionCounts="current_question_counts"
+        :questionCount="question_count"
+      />
     </div>
   </div>
 </template>
 
 <script>
+import TitleComponent from "./TitleComponet.vue";
+import StartButtonComponent from "./StartButtonComponent.vue";
+import CurrentQuestionComponent from "./CurrentQuestionComponent.vue";
+import ClearMessageComponent from "./ClearMessageComponent.vue";
+import ElapsedTimeComponent from "./ElapsedTimeComponent.vue";
+import PlayAgainButtonComponent from "./PlayAgainButtonComponent.vue";
+import TypeFormComponent from "./TypeFormComponent.vue";
+import GaugeComponent from "./GaugeComponent.vue";
+import QuestionCounterComponent from "./QuestionCounterComponent.vue";
+
 export default {
   data() {
     return {
@@ -66,6 +56,17 @@ export default {
       startTime: null,
       elapsedTime: null,
     };
+  },
+  components: {
+    TitleComponent,
+    StartButtonComponent,
+    CurrentQuestionComponent,
+    ClearMessageComponent,
+    ElapsedTimeComponent,
+    PlayAgainButtonComponent,
+    TypeFormComponent,
+    GaugeComponent,
+    QuestionCounterComponent,
   },
   computed: {
     styleObject: function () {

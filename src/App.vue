@@ -5,7 +5,7 @@
 </template>
 
 <script>
-// import HelloWorld from "./components/HelloWorld.vue";
+// ゲーム画面
 import HelloWorld from "./components/FrontPage.vue";
 
 export default {
