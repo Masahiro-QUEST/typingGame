@@ -2,9 +2,11 @@
   <div>
     <nav>
       <div class="left">
-        <div class="font-nikukyu text-center text-2xl text-gray-800">
-          タイピングゲーム
-        </div>
+        <router-link to="/">
+          <div class="font-nikukyu text-center text-2xl text-gray-800">
+            タイピングゲーム
+          </div>
+        </router-link>
       </div>
       <div class="right">
         <router-link to="/auth">Login</router-link>
