@@ -9,11 +9,24 @@
       "UnauthRoleName": "amplify-vuetypingame-dev-224929-unauthRole",
       "StackName": "amplify-vuetypingame-dev-224929",
       "StackId": "arn:aws:cloudformation:ap-northeast-1:435092345711:stack/amplify-vuetypingame-dev-224929/2ab66a20-e439-11ed-8665-0e562789a1f9",
-      "AmplifyAppId": "d3f2dkgzdlhvpd"
+      "AmplifyAppId": "d3f2dkgzdlhvpd",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-vuetypingame-dev-224929-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
     },
     "categories": {
       "auth": {
         "vuetypingame73e64387": {}
+      },
+      "function": {
+        "userFunctionea4321bb": {
+          "deploymentBucketName": "amplify-vuetypingame-dev-224929-deployment",
+          "s3Key": "amplify-builds/userFunctionea4321bb-554b383963614f4f514a-build.zip"
+        }
+      },
+      "storage": {
+        "usersTableea4321bb": {}
+      },
+      "api": {
+        "usersTableea4321bb": {}
       }
     }
   }

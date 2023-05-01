@@ -1,4 +1,20 @@
 {
+  "api": {
+    "usersTableea4321bb": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "userFunctionea4321bb"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    }
+  },
   "auth": {
     "vuetypingame73e64387": {
       "customAuth": false,
@@ -25,6 +41,51 @@
       },
       "providerPlugin": "awscloudformation",
       "service": "Cognito"
+    }
+  },
+  "function": {
+    "userFunctionea4321bb": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributeEnvMap": {
+            "Arn": "TABLE_ARN",
+            "Name": "TABLE_NAME"
+          },
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "storage",
+          "resourceName": "usersTableea4321bb"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_userFunctionea4321bb_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "userFunctionea4321bb"
+        }
+      ]
+    },
+    "AMPLIFY_function_userFunctionea4321bb_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "userFunctionea4321bb"
+        }
+      ]
+    }
+  },
+  "storage": {
+    "usersTableea4321bb": {
+      "providerPlugin": "awscloudformation",
+      "service": "DynamoDB"
     }
   }
 }

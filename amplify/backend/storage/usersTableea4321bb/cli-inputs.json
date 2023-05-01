@@ -1,0 +1,10 @@
+{
+  "resourceName": "usersTableea4321bb",
+  "tableName": "usersTableea4321bb",
+  "partitionKey": {
+    "fieldName": "userId",
+    "fieldType": "string"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}

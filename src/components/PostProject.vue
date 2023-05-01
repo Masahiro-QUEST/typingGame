@@ -1,60 +1,44 @@
 <template>
-  <div><h1>Test</h1></div>
-  <div class="container">
-    <div class="input-container">
-      <label for="project-id">ProjectId</label>
-      <input
-        type="text"
-        id="project-id"
-        name="id"
-        v-model="postData.projectId"
-      />
-    </div>
-    <div class="input-container">
-      <label for="title">Title</label>
-      <input type="text" id="title" name="title" v-model="postData.title" />
-    </div>
-    <div class="input-container">
-      <label for="about">About</label>
-      <input type="text" id="about" name="about" v-model="postData.about" />
-    </div>
-    <div class="input-container">
-      <label for="image">Image</label>
-      <input type="text" id="image" name="image" v-model="postData.image" />
-    </div>
-    <div class="input-container">
-      <label for="link1">Link 1</label>
-      <input type="text" id="link1" name="link1" v-model="postData.link1" />
-    </div>
-    <div class="input-container">
-      <label for="link2">Link 2</label>
-      <input type="text" id="link2" name="link2" v-model="postData.link2" />
-    </div>
-  </div>
+  <button @click="createUser">Create User</button>
+  <p v-if="responseMessage">{{ responseMessage }}</p>
 </template>
 
 <script>
-import axios from 'axios'
+import { API } from "aws-amplify";
 
 export default {
+  name: "PostPage",
   data() {
     return {
-      postData: {
-        projectId: "",
-        title: "",
-        about: "",
-        image: "",
-        link1: "",
-        link2: "",
-      },
+      responseMessage: "",
     };
   },
   methods: {
-    PostProject() {
-        axios.post()
-    }
-  }
+    async createUser() {
+      const apiName = "usersTableea4321bb";
+      const path = "/users";
+      const newUser = {
+        body: {
+          userId: "user1",
+          username: "username1",
+          password: "password1",
+          email: "email1@example.com",
+          gamesPlayed: 0,
+          averageSpeed: 0,
+        },
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+
+      try {
+        await API.post(apiName, path, newUser);
+        this.responseMessage = "User successfully created!";
+      } catch (error) {
+        console.error("Error creating user:", error);
+        this.responseMessage = "Error creating user. Please try again.";
+      }
+    },
+  },
 };
 </script>
-
-<style></style>
