@@ -1,41 +1,44 @@
 <template>
-  <div
-    class="bg-gray-900 min-h-screen flex flex-col justify-center items-center"
-  >
-    <TitleComponent />
-    <StartButtonComponent v-if="!startFlg" @game-start="gameStart" />
-    <div v-if="startFlg" class="flex flex-col justify-center items-center">
-      <CurrentQuestionComponent
-        :currentQuestion="current_question"
-        :isLastQuestion="current_question_counts === question_count"
-      />
-      <ClearMessageComponent
-        v-if="current_question_counts === question_count"
-      />
-      <ElapsedTimeComponent
-        v-if="current_question_counts === question_count"
-        :elapsedTime="elapsedTime"
-      />
-      <PlayAgainButtonComponent
-        v-if="current_question_counts === question_count"
-        @restart-game="restartGame"
-      />
-      <TypeFormComponent
-        v-if="current_question_counts !== question_count"
-        v-model="typeBox"
-      />
-      <GaugeComponent :styleObject="styleObject" />
-      <QuestionCounterComponent
-        :currentQuestionCounts="current_question_counts"
-        :questionCount="question_count"
-      />
-      <PostProject />
+  <div class="cat-typing-game">
+    <div v-for="i in 10" :key="i" class="falling-cat"></div>
+    <div
+      class="bg-gray-900 min-h-screen flex flex-col justify-center items-center"
+    >
+      <TitleComponent />
+      <StartButtonComponent v-if="!startFlg" @game-start="gameStart" />
+      <div v-if="startFlg" class="flex flex-col justify-center items-center">
+        <CurrentQuestionComponent
+          :currentQuestion="current_question"
+          :isLastQuestion="current_question_counts === question_count"
+        />
+        <ClearMessageComponent
+          v-if="current_question_counts === question_count"
+        />
+        <ElapsedTimeComponent
+          v-if="current_question_counts === question_count"
+          :elapsedTime="elapsedTime"
+        />
+        <PlayAgainButtonComponent
+          v-if="current_question_counts === question_count"
+          @restart-game="restartGame"
+        />
+        <TypeFormComponent
+          v-if="current_question_counts !== question_count"
+          v-model="typeBox"
+        />
+        <GaugeComponent :styleObject="styleObject" />
+        <QuestionCounterComponent
+          :currentQuestionCounts="current_question_counts"
+          :questionCount="question_count"
+        />
+        <PostProject />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-//コンポーネント
+//Gameコンポーネント
 import TitleComponent from "./TitleComponet.vue";
 import StartButtonComponent from "./StartButtonComponent.vue";
 import CurrentQuestionComponent from "./CurrentQuestionComponent.vue";
@@ -45,11 +48,10 @@ import PlayAgainButtonComponent from "./PlayAgainButtonComponent.vue";
 import TypeFormComponent from "./TypeFormComponent.vue";
 import GaugeComponent from "./GaugeComponent.vue";
 import QuestionCounterComponent from "./QuestionCounterComponent.vue";
-
+//DynamoDB
+import PostProject from "./PostProject.vue";
 //フレームワーク
 import { mapMutations, mapActions } from "vuex";
-
-import PostProject from "./PostProject.vue";
 
 export default {
   data() {
@@ -115,6 +117,10 @@ export default {
   mounted: function () {
     this.current_question = this.questions[0];
     this.question_count = this.questions.length;
+    const fallingCats = this.$el.querySelectorAll(".falling-cat");
+    fallingCats.forEach((cat, index) => {
+      cat.style.setProperty("--i", index);
+    });
   },
   watch: {
     typeBox: function (e) {
@@ -151,5 +157,32 @@ export default {
   border: 1px solid #3e3e3e;
   height: 12px;
   width: 32rem;
+}
+@keyframes fall {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(calc(100vh + 100%));
+  }
+}
+
+.falling-cat {
+  position: absolute;
+  width: 50px; /* 画像の幅を縮小 */
+  height: 50px; /* 画像の高さを縮小 */
+  background-image: url(@/assets/background_cat1.png);
+  background-size: cover; /* 画像を要素のサイズに合わせる */
+  animation: fall 5s linear infinite;
+  animation-delay: calc(5s * var(--i) / 10);
+  left: calc(100% * var(--i) / 10);
+}
+
+.cat-typing-game {
+  background-image: url(@/assets/background_cat1.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
 }
 </style>

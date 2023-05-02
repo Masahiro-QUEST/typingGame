@@ -9,7 +9,11 @@
         </router-link>
       </div>
       <div class="right">
-        <router-link to="/auth">Login</router-link>
+        <router-link to="/auth"
+          ><div class="font-nikukyu text-center text-2xl text-gray-800">
+            ログイン
+          </div></router-link
+        >
       </div>
     </nav>
     <router-view />

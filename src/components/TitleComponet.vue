@@ -1,7 +1,5 @@
 <template>
-  <div class="text-4xl font-bold mb-8 border-b-4 border-white text-white">
-    Typing Game
-  </div>
+  <div class="font-nikukyu text-6xl mb-8 text-white">タイピングゲーム</div>
 </template>
 
 <script>
