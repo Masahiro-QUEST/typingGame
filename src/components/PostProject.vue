@@ -1,10 +1,10 @@
 <template>
-  <button @click="createUser">Create User</button>
-  <p v-if="responseMessage">{{ responseMessage }}</p>
+  <div></div>
 </template>
 
 <script>
 import { API } from "aws-amplify";
+import { mapState } from "vuex";
 
 export default {
   name: "PostPage",
@@ -13,17 +13,20 @@ export default {
       responseMessage: "",
     };
   },
+  computed: {
+    ...mapState(["userId", "email", "userName", "endTime"]),
+  },
   methods: {
     async createUser() {
       const apiName = "usersTableea4321bb";
       const path = "/users";
       const newUser = {
         body: {
-          userId: "user1",
-          username: "username1",
+          userId: this.userId,
+          username: this.userName,
           password: "password1",
-          email: "email1@example.com",
-          gamesPlayed: 0,
+          email: this.email,
+          gamesPlayed: this.endTime,
           averageSpeed: 0,
         },
         headers: {

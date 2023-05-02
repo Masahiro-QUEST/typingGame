@@ -29,11 +29,13 @@
         :currentQuestionCounts="current_question_counts"
         :questionCount="question_count"
       />
+      <PostProject />
     </div>
   </div>
 </template>
 
 <script>
+//コンポーネント
 import TitleComponent from "./TitleComponet.vue";
 import StartButtonComponent from "./StartButtonComponent.vue";
 import CurrentQuestionComponent from "./CurrentQuestionComponent.vue";
@@ -43,6 +45,11 @@ import PlayAgainButtonComponent from "./PlayAgainButtonComponent.vue";
 import TypeFormComponent from "./TypeFormComponent.vue";
 import GaugeComponent from "./GaugeComponent.vue";
 import QuestionCounterComponent from "./QuestionCounterComponent.vue";
+
+//フレームワーク
+import { mapMutations, mapActions } from "vuex";
+
+import PostProject from "./PostProject.vue";
 
 export default {
   data() {
@@ -67,6 +74,7 @@ export default {
     TypeFormComponent,
     GaugeComponent,
     QuestionCounterComponent,
+    PostProject,
   },
   computed: {
     styleObject: function () {
@@ -96,6 +104,13 @@ export default {
         document.getElementById("typeForm").focus();
       });
     },
+    // mapMutationsを使ってミューテーションをメソッドとしてマッピング
+    ...mapMutations([
+      "setEndTime", // VuexのsetEndTimeミューテーションを同じ名前のメソッドとしてマッピング
+    ]),
+    ...mapActions([
+      "createUser", // VuexのcreateUserアクションを同じ名前のメソッドとしてマッピング
+    ]),
   },
   mounted: function () {
     this.current_question = this.questions[0];
@@ -113,7 +128,10 @@ export default {
           // ゲーム終了時刻を取得し、経過時間を計算
           let endTime = new Date();
           this.elapsedTime = (endTime - this.startTime) / 1000;
-          // elapsedTimeを表示または利用する処理を追加
+          this.setEndTime(this.elapsedTime);
+
+          // ゲーム終了時にcreateUserアクションを呼び出す
+          this.createUser();
         }
       }
     },

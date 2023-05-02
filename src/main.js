@@ -1,7 +1,11 @@
+//フレームワーク
 import { createApp } from "vue";
 import App from "./App.vue";
 import "@/assets/tailwind.css";
 import router from "./router";
+import store from "./store";
+
+//aws
 import {
   AmplifyButton,
   AmplifyCheckBox,
@@ -14,7 +18,7 @@ import awsExports from "./aws-exports";
 
 Amplify.configure(awsExports);
 
-const app = createApp(App).use(router);
+const app = createApp(App).use(router).use(store);
 
 // Register each component as a global component
 app.component("AmplifyButton", AmplifyButton);

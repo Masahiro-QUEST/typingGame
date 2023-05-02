@@ -17,7 +17,29 @@
 </template>
 
 <script>
-// import and export here
+import { Auth } from "aws-amplify";
+import { useStore } from "vuex";
+
+export default {
+  name: "App",
+  created() {
+    this.checkAuthStatus();
+  },
+  methods: {
+    async checkAuthStatus() {
+      const store = useStore();
+      try {
+        const userInfo = await Auth.currentAuthenticatedUser();
+        const identities = JSON.parse(userInfo.attributes.identities);
+        store.commit("setUserId", identities[0].userId);
+        store.commit("setEmail", userInfo.attributes.email);
+        store.commit("setUserName", userInfo.username);
+      } catch (error) {
+        console.error("No authenticated user found", error);
+      }
+    },
+  },
+};
 </script>
 
 <style>
