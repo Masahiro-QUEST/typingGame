@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import FrontPage from "../components/FrontPage";
 import AuthPage from "../components/AuthPage.vue";
 import PostPage from "../components/PostProject.vue";
+import GamePage from "../components/GamePage.vue";
 
 const routes = [
   {
@@ -19,6 +20,11 @@ const routes = [
     path: "/post",
     name: "Post",
     component: PostPage,
+  },
+  {
+    path: "/nyanstage",
+    name: "NyanStage",
+    component: GamePage,
   },
 ];
 

@@ -1,5 +1,9 @@
 <template>
   <div>
+    <audio id="backgroundAudio" preload="auto">
+      <source :src="require('@/assets/優雅なお猫様.mp3')" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
     <nav>
       <div class="left">
         <router-link to="/">
@@ -30,6 +34,15 @@ export default {
     this.checkAuthStatus();
   },
   methods: {
+    manageBackgroundAudio() {
+      const audioElement = document.getElementById("backgroundAudio");
+      if (!audioElement) return;
+      if (this.$route.path === "/") {
+        audioElement.play();
+      } else {
+        audioElement.pause();
+      }
+    },
     async checkAuthStatus() {
       const store = useStore();
       try {
@@ -41,6 +54,14 @@ export default {
       } catch (error) {
         console.error("No authenticated user found", error);
       }
+    },
+  },
+  mounted() {
+    this.manageBackgroundAudio();
+  },
+  watch: {
+    $route() {
+      this.manageBackgroundAudio();
     },
   },
 };
