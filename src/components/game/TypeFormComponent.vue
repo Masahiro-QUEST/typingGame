@@ -4,6 +4,7 @@
       id="typeForm"
       v-model="innerValue"
       type="text"
+      autocomplete="off"
       class="typeForm text-white font-bold text-lg text-center bg-transparent border-b-2 border-white w-64 focus:outline-none"
       @input="$emit('update:modelValue', innerValue)"
     />

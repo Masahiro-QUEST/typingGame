@@ -1,17 +1,14 @@
 <template>
   <div>
     <div class="cat-typing-game">
-      <div
-        v-for="i in 10"
-        :key="i"
-        :class="{ 'falling-cat': true, paused: hideFallingCats }"
-      ></div>
+      <div :class="{ 'falling-cat': true, paused: hideFallingCats }"></div>
       <div
         class="bg-gray-900 min-h-screen flex flex-col justify-center items-center"
       >
         <StartButtonComponent v-if="!startFlg" @game-start="gameStart" />
         <div v-if="startFlg" class="flex flex-col justify-center items-center">
           <CurrentQuestionComponent
+            :currentQuestionImage="this.current_cat_image"
             :currentQuestionEnglish="current_question_english"
             :currentQuestionJapanese="current_question_japanese"
             :isLastQuestion="current_question_counts === question_count"
@@ -65,19 +62,42 @@ export default {
       startFlg: false,
       current_question: "test",
       questions: [
-        { english: "Abyssinian", japanese: "アビシニアン" },
-        { english: "American Curl", japanese: "アメリカンカール" },
-        { english: "American Shorthair", japanese: "アメリカンショートヘア" },
-        { english: "American Bobtail", japanese: "アメリカンボブテイル" },
-        { english: "American Wirehair", japanese: "アメリカンワイヤーヘア" },
+        {
+          english: "Abyssinian",
+          japanese: "アビシニアン",
+          image: "Abyssinian.jpg",
+        },
+        {
+          english: "American Curl",
+          japanese: "アメリカンカール",
+          image: "AmericanCurl.jpg",
+        },
+        {
+          english: "American Shorthair",
+          japanese: "アメリカンショートヘア",
+          image: "AmericanShorthair.jpg",
+        },
+        {
+          english: "American Bobtail",
+          japanese: "アメリカンボブテイル",
+          image: "AmericanBobtail.jpg",
+        },
+        {
+          english: "American Wirehair",
+          japanese: "アメリカンワイヤーヘア",
+          image: "AmericanWirehair.jpg",
+        },
       ],
 
       typeBox: "",
       current_question_counts: 0,
-      question_count: 1,
+      question_count: 3,
       startTime: null,
       elapsedTime: null,
       hideFallingCats: false,
+      current_question_english: "",
+      current_question_japanese: "",
+      current_cat_image: "",
     };
   },
   components: {
@@ -113,11 +133,31 @@ export default {
       this.current_question_counts = 0;
       this.startTime = new Date();
       this.questions = [
-        { english: "Abyssinian", japanese: "アビシニアン" },
-        { english: "American Curl", japanese: "アメリカンカール" },
-        { english: "American Shorthair", japanese: "アメリカンショートヘア" },
-        { english: "American Bobtail", japanese: "アメリカンボブテイル" },
-        { english: "American Wirehair", japanese: "アメリカンワイヤーヘア" },
+        {
+          english: "Abyssinian",
+          japanese: "アビシニアン",
+          image: "Abyssinian.jpg",
+        },
+        {
+          english: "American Curl",
+          japanese: "アメリカンカール",
+          image: "AmericanCurl.jpg",
+        },
+        {
+          english: "American Shorthair",
+          japanese: "アメリカンショートヘア",
+          image: "AmericanShorthair.jpg",
+        },
+        {
+          english: "American Bobtail",
+          japanese: "アメリカンボブテイル",
+          image: "Abyssinian.jpg",
+        },
+        {
+          english: "American Wirehair",
+          japanese: "アメリカンワイヤーヘア",
+          image: "Abyssinian.jpg",
+        },
       ];
       this.current_question = this.questions[0];
       this.startFlg = true;
@@ -142,11 +182,12 @@ export default {
     const randomQuestion = this.getRandomQuestion();
     this.current_question_english = randomQuestion.english;
     this.current_question_japanese = randomQuestion.japanese;
-    this.question_count = 1;
+    this.question_count = 5;
     const fallingCats = this.$el.querySelectorAll(".falling-cat");
     fallingCats.forEach((cat, index) => {
       cat.style.setProperty("--i", index);
     });
+    this.current_cat_image = randomQuestion.image;
   },
   watch: {
     typeBox: function (e) {
@@ -154,6 +195,7 @@ export default {
         const randomQuestion = this.getRandomQuestion();
         this.current_question_english = randomQuestion.english;
         this.current_question_japanese = randomQuestion.japanese;
+        this.current_cat_image = randomQuestion.image;
         this.typeBox = "";
         this.current_question_counts += 1;
 
