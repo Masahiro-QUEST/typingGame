@@ -12,7 +12,8 @@
         <StartButtonComponent v-if="!startFlg" @game-start="gameStart" />
         <div v-if="startFlg" class="flex flex-col justify-center items-center">
           <CurrentQuestionComponent
-            :currentQuestion="current_question"
+            :currentQuestionEnglish="current_question_english"
+            :currentQuestionJapanese="current_question_japanese"
             :isLastQuestion="current_question_counts === question_count"
           />
           <ClearMessageComponent
@@ -44,14 +45,14 @@
 
 <script>
 //Gameコンポーネント
-import StartButtonComponent from "./StartButtonComponent.vue";
-import CurrentQuestionComponent from "./CurrentQuestionComponent.vue";
-import ClearMessageComponent from "./ClearMessageComponent.vue";
-import ElapsedTimeComponent from "./ElapsedTimeComponent.vue";
-import PlayAgainButtonComponent from "./PlayAgainButtonComponent.vue";
-import TypeFormComponent from "./TypeFormComponent.vue";
-import GaugeComponent from "./GaugeComponent.vue";
-import QuestionCounterComponent from "./QuestionCounterComponent.vue";
+import CurrentQuestionComponent from "./game/CurrentQuestionComponent.vue";
+import ClearMessageComponent from "./game/ClearMessageComponent.vue";
+import ElapsedTimeComponent from "./game/ElapsedTimeComponent.vue";
+import PlayAgainButtonComponent from "./game/PlayAgainButtonComponent.vue";
+import TypeFormComponent from "./game/TypeFormComponent.vue";
+import GaugeComponent from "./game/GaugeComponent.vue";
+import QuestionCounterComponent from "./game/QuestionCounterComponent.vue";
+import StartButtonComponent from "./game/StartButtonComponent.vue";
 //DynamoDB
 import PostProject from "./PostProject.vue";
 //フレームワーク
@@ -63,10 +64,17 @@ export default {
     return {
       startFlg: false,
       current_question: "test",
-      questions: ["apple", "banana", "chocolate", "donut", "espresso"],
+      questions: [
+        { english: "Abyssinian", japanese: "アビシニアン" },
+        { english: "American Curl", japanese: "アメリカンカール" },
+        { english: "American Shorthair", japanese: "アメリカンショートヘア" },
+        { english: "American Bobtail", japanese: "アメリカンボブテイル" },
+        { english: "American Wirehair", japanese: "アメリカンワイヤーヘア" },
+      ],
+
       typeBox: "",
       current_question_counts: 0,
-      question_count: 0,
+      question_count: 1,
       startTime: null,
       elapsedTime: null,
       hideFallingCats: false,
@@ -104,13 +112,23 @@ export default {
     restartGame: function () {
       this.current_question_counts = 0;
       this.startTime = new Date();
-      this.questions = ["apple", "banana", "chocolate", "donut", "espresso"];
+      this.questions = [
+        { english: "Abyssinian", japanese: "アビシニアン" },
+        { english: "American Curl", japanese: "アメリカンカール" },
+        { english: "American Shorthair", japanese: "アメリカンショートヘア" },
+        { english: "American Bobtail", japanese: "アメリカンボブテイル" },
+        { english: "American Wirehair", japanese: "アメリカンワイヤーヘア" },
+      ];
       this.current_question = this.questions[0];
       this.startFlg = true;
       this.typeBox = "";
       this.$nextTick(function () {
         document.getElementById("typeForm").focus();
       });
+    },
+    getRandomQuestion() {
+      const randomIndex = Math.floor(Math.random() * this.questions.length);
+      return this.questions[randomIndex];
     },
     // mapMutationsを使ってミューテーションをメソッドとしてマッピング
     ...mapMutations([
@@ -121,8 +139,10 @@ export default {
     ]),
   },
   mounted: function () {
-    this.current_question = this.questions[0];
-    this.question_count = this.questions.length;
+    const randomQuestion = this.getRandomQuestion();
+    this.current_question_english = randomQuestion.english;
+    this.current_question_japanese = randomQuestion.japanese;
+    this.question_count = 1;
     const fallingCats = this.$el.querySelectorAll(".falling-cat");
     fallingCats.forEach((cat, index) => {
       cat.style.setProperty("--i", index);
@@ -130,11 +150,13 @@ export default {
   },
   watch: {
     typeBox: function (e) {
-      if (e === this.current_question) {
-        this.current_question = this.questions[1];
-        this.questions.splice(0, 1);
+      if (e === this.current_question_english) {
+        const randomQuestion = this.getRandomQuestion();
+        this.current_question_english = randomQuestion.english;
+        this.current_question_japanese = randomQuestion.japanese;
         this.typeBox = "";
         this.current_question_counts += 1;
+
         // クリア条件が満たされた場合
         if (this.current_question_counts == this.question_count) {
           // ゲーム終了時刻を取得し、経過時間を計算

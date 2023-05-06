@@ -15,7 +15,7 @@
       <div class="right">
         <router-link to="/auth"
           ><div class="font-nikukyu text-center text-2xl text-gray-800">
-            ログイン
+            ログイン・ログアウト
           </div></router-link
         >
       </div>

@@ -6,7 +6,7 @@
       <TitleComponent />
       <div
         @click="navigateToNyanStage"
-        class="nyan-stage-box cursor-pointer text-center py-4 px-8 text-white font-bold text-xl bg-blue-500 rounded-md hover:bg-blue-600 transition duration-200 flex flex-col items-center justify-center bg-opacity-50 hover:bg-opacity-100"
+        class="nyan-stage-box cursor-pointer text-center py-4 px-8 text-white font-bold text-xl rounded-md hover:bg-blue-600 transition duration-200 flex flex-col items-center justify-center bg-opacity-50 hover:bg-opacity-100"
       >
         <img :src="require('@/assets/nyanstage1.png')" class="w-24 h-24 mb-2" />
         にゃんにゃんステージ
@@ -17,8 +17,7 @@
 
 <script>
 //Gameコンポーネント
-import TitleComponent from "./TitleComponet.vue";
-
+import TitleComponent from "./game/TitleComponet.vue";
 export default {
   data() {
     return {};
