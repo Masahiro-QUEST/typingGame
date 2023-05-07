@@ -50,6 +50,8 @@ import TypeFormComponent from "./game/TypeFormComponent.vue";
 import GaugeComponent from "./game/GaugeComponent.vue";
 import QuestionCounterComponent from "./game/QuestionCounterComponent.vue";
 import StartButtonComponent from "./game/StartButtonComponent.vue";
+//quesions
+import { questions } from "./game/questions.js";
 //DynamoDB
 import PostProject from "./PostProject.vue";
 //フレームワーク
@@ -61,34 +63,7 @@ export default {
     return {
       startFlg: false,
       current_question: "test",
-      questions: [
-        {
-          english: "Abyssinian",
-          japanese: "アビシニアン",
-          image: "Abyssinian.jpg",
-        },
-        {
-          english: "American Curl",
-          japanese: "アメリカンカール",
-          image: "AmericanCurl.jpg",
-        },
-        {
-          english: "American Shorthair",
-          japanese: "アメリカンショートヘア",
-          image: "AmericanShorthair.jpg",
-        },
-        {
-          english: "American Bobtail",
-          japanese: "アメリカンボブテイル",
-          image: "AmericanBobtail.jpg",
-        },
-        {
-          english: "American Wirehair",
-          japanese: "アメリカンワイヤーヘア",
-          image: "AmericanWirehair.jpg",
-        },
-      ],
-
+      questions: questions,
       typeBox: "",
       current_question_counts: 0,
       question_count: 3,
@@ -132,33 +107,7 @@ export default {
     restartGame: function () {
       this.current_question_counts = 0;
       this.startTime = new Date();
-      this.questions = [
-        {
-          english: "Abyssinian",
-          japanese: "アビシニアン",
-          image: "Abyssinian.jpg",
-        },
-        {
-          english: "American Curl",
-          japanese: "アメリカンカール",
-          image: "AmericanCurl.jpg",
-        },
-        {
-          english: "American Shorthair",
-          japanese: "アメリカンショートヘア",
-          image: "AmericanShorthair.jpg",
-        },
-        {
-          english: "American Bobtail",
-          japanese: "アメリカンボブテイル",
-          image: "Abyssinian.jpg",
-        },
-        {
-          english: "American Wirehair",
-          japanese: "アメリカンワイヤーヘア",
-          image: "Abyssinian.jpg",
-        },
-      ];
+      this.questions = questions;
       this.current_question = this.questions[0];
       this.startFlg = true;
       this.typeBox = "";
