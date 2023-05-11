@@ -27,6 +27,9 @@
       },
       "api": {
         "usersTableea4321bb": {}
+      },
+      "hosting": {
+        "S3AndCloudFront": {}
       }
     }
   }

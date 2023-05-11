@@ -1,7 +1,11 @@
 <template>
   <div>
     <div class="cat-typing-game">
-      <div :class="{ 'falling-cat': true, paused: hideFallingCats }"></div>
+      <div
+        v-for="i in 10"
+        :key="i"
+        :class="{ 'falling-cat': true, paused: hideFallingCats }"
+      ></div>
       <div
         class="bg-gray-900 min-h-screen flex flex-col justify-center items-center"
       >
@@ -204,7 +208,6 @@ export default {
   position: relative;
   overflow: hidden;
 }
-
 .paused {
   display: none;
 }
