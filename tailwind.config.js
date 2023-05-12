@@ -6,6 +6,7 @@ module.exports = {
       fontFamily: {
         roboto: ["Roboto", "sans-serif"],
         nikukyu: ["Nikukyu", "sans-serif"],
+        kokoro: ["Kokoro", "sans-serif"],
       },
     },
   },

@@ -2,6 +2,7 @@
   <footer class="footer">
     <!-- フッターの他の要素 -->
     <ToggleSwitVue @toggle="toggleMode" />
+    <div>@ 2023 web正人</div>
   </footer>
 </template>
 

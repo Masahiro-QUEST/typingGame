@@ -11,7 +11,7 @@
         <img :src="require('@/assets/nyanstage1.png')" class="w-28 h-28 mb-2" />
         にゃんにゃんステージ
       </div>
-      <div class="text-white text-center mt-4 px-4">
+      <div class="font-kokoro text-white text-center mt-4 px-4">
         注意:
         このゲームでは大文字と空白もチェック対象となります。正確な入力にご注意ください。
       </div>

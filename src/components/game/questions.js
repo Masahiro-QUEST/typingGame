@@ -17,6 +17,7 @@ export const questions = [
     image: "AmericanShorthair.jpg",
   },
   {
+    // 要注意
     english: "American Bobtail",
     japanese: "アメリカンボブテイル",
     image: "AmericanBobtail.jpg",
