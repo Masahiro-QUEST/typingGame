@@ -14,6 +14,9 @@ export default {
   components: {
     ToggleSwitVue,
   },
+  methods: {
+    toggleMode() {},
+  },
 };
 </script>
 

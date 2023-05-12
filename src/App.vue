@@ -1,7 +1,6 @@
 <template>
   <div class="d-flex flex-column min-h-screen">
     <NavbarComponetVue />
-    <AudioPlayerComponetVue />
     <div class="flex-grow">
       <ToggleSwitVue @toggle="toggleMode" />
       <router-view />
@@ -13,8 +12,8 @@
 <script>
 //Componets
 import NavbarComponetVue from "./views/NavbarComponet.vue";
-import AudioPlayerComponetVue from "./views/AudioPlayerComponet.vue";
 import FooterComponetVue from "./views/FooterComponet.vue";
+import ToggleSwitVue from "./views/ToggleSwit.vue";
 //AWS
 import { Auth } from "aws-amplify";
 import { useStore } from "vuex";
@@ -23,8 +22,8 @@ export default {
   name: "App",
   components: {
     NavbarComponetVue,
-    AudioPlayerComponetVue,
     FooterComponetVue,
+    ToggleSwitVue,
   },
   created() {
     this.checkAuthStatus();
@@ -48,9 +47,10 @@ export default {
         store.commit("setEmail", userInfo.attributes.email);
         store.commit("setUserName", userInfo.username);
       } catch (error) {
-        console.error("No authenticated user found", error);
+        console.log("Not Yet ");
       }
     },
+    toggleMode() {},
   },
   mounted() {
     this.manageBackgroundAudio();
