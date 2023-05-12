@@ -1,35 +1,31 @@
 <template>
-  <div>
-    <audio id="backgroundAudio" preload="auto">
-      <source :src="require('@/assets/優雅なお猫様.mp3')" type="audio/mpeg" />
-      Your browser does not support the audio element.
-    </audio>
-    <nav>
-      <div class="left">
-        <router-link to="/">
-          <div class="font-nikukyu text-center text-2xl text-gray-800">
-            タイピングゲーム
-          </div>
-        </router-link>
-      </div>
-      <div class="right">
-        <router-link to="/auth"
-          ><div class="font-nikukyu text-center text-2xl text-gray-800">
-            ログイン・ログアウト
-          </div></router-link
-        >
-      </div>
-    </nav>
-    <router-view />
+  <div class="d-flex flex-column min-h-screen">
+    <NavbarComponetVue />
+    <AudioPlayerComponetVue />
+    <div class="flex-grow">
+      <ToggleSwitVue @toggle="toggleMode" />
+      <router-view />
+    </div>
+    <FooterComponetVue />
   </div>
 </template>
 
 <script>
+//Componets
+import NavbarComponetVue from "./views/NavbarComponet.vue";
+import AudioPlayerComponetVue from "./views/AudioPlayerComponet.vue";
+import FooterComponetVue from "./views/FooterComponet.vue";
+//AWS
 import { Auth } from "aws-amplify";
 import { useStore } from "vuex";
 
 export default {
   name: "App",
+  components: {
+    NavbarComponetVue,
+    AudioPlayerComponetVue,
+    FooterComponetVue,
+  },
   created() {
     this.checkAuthStatus();
   },
@@ -89,5 +85,21 @@ nav a {
 
 nav a.router-link-exact-active {
   color: #42b983;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.min-h-screen {
+  min-height: 100vh;
+}
+
+.flex-grow {
+  flex-grow: 1;
 }
 </style>

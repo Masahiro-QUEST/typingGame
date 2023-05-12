@@ -4,6 +4,7 @@ import FrontPage from "../components/FrontPage";
 import AuthPage from "../components/AuthPage.vue";
 import PostPage from "../components/PostProject.vue";
 import GamePage from "../components/GamePage.vue";
+import RankingPage from "../components/RankingPage.vue";
 
 const routes = [
   {
@@ -25,6 +26,11 @@ const routes = [
     path: "/nyanstage",
     name: "NyanStage",
     component: GamePage,
+  },
+  {
+    path: "/ranking",
+    name: "RankingPage",
+    component: RankingPage,
   },
 ];
 
