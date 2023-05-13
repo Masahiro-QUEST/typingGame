@@ -37,8 +37,8 @@ export default {
       try {
         await API.post(apiName, path, newUser);
         this.responseMessage = "User successfully created!";
-      } catch (error) {
-        console.error("Error creating user:", error);
+      } catch {
+        console.log("Not Yet Login");
         this.responseMessage = "Error creating user. Please try again.";
       }
     },

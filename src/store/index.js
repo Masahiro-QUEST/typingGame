@@ -43,7 +43,7 @@ export default createStore({
 
       try {
         await API.post(apiName, path, newUser);
-        console.error("Post Success");
+        console.log("Post Success");
       } catch (error) {
         console.error("Error creating user:", error);
       }

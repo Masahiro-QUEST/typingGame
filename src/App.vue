@@ -2,7 +2,6 @@
   <div class="d-flex flex-column min-h-screen">
     <NavbarComponetVue />
     <div class="flex-grow">
-      <ToggleSwitVue @toggle="toggleMode" />
       <router-view />
     </div>
     <FooterComponetVue />
@@ -13,7 +12,6 @@
 //Componets
 import NavbarComponetVue from "./views/NavbarComponet.vue";
 import FooterComponetVue from "./views/FooterComponet.vue";
-import ToggleSwitVue from "./views/ToggleSwit.vue";
 //AWS
 import { Auth } from "aws-amplify";
 import { useStore } from "vuex";
@@ -23,7 +21,6 @@ export default {
   components: {
     NavbarComponetVue,
     FooterComponetVue,
-    ToggleSwitVue,
   },
   created() {
     this.checkAuthStatus();

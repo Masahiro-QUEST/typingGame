@@ -1,5 +1,5 @@
 <template>
-  <dir>Hello Ranking</dir>
+  <div>Hello Ranking</div>
 </template>
 
 <script>

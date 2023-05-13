@@ -35,8 +35,8 @@ export default {
         store.commit("setUserId", identities[0].userId);
         store.commit("setEmail", userInfo.attributes.email);
         store.commit("setUserName", userInfo.username);
-      } catch (error) {
-        console.error("Error getting user info", error);
+      } catch {
+        console.log("Not Yet Login");
       }
     },
   },
