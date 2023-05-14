@@ -48,7 +48,7 @@
     "userPoolGroups": false,
     "adminQueries": true,
     "triggers": {},
-    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:8080/\"],\"LogoutURLs\":[\"http://localhost:8080/\"]}",
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://d7dl4o4mbshu7.cloudfront.net\"],\"LogoutURLs\":[\"https://d7dl4o4mbshu7.cloudfront.net\"]}",
     "parentStack": {
       "Ref": "AWS::StackId"
     },
