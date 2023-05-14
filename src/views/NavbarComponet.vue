@@ -7,17 +7,11 @@
         </div>
       </router-link>
     </div>
-    <div class="midle">
+
+    <div class="right">
       <router-link to="/ranking">
         <div class="font-nikukyu text-center text-2xl text-gray-800">
           ランキング
-        </div>
-      </router-link>
-    </div>
-    <div class="right">
-      <router-link to="/auth">
-        <div class="font-nikukyu text-center text-2xl text-gray-800">
-          ログイン・ログアウト
         </div>
       </router-link>
     </div>

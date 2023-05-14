@@ -17,9 +17,6 @@
             :currentQuestionJapanese="current_question_japanese"
             :isLastQuestion="current_question_counts === question_count"
           />
-          <ClearMessageComponent
-            v-if="current_question_counts === question_count"
-          />
           <ElapsedTimeComponent
             v-if="current_question_counts === question_count"
             :elapsedTime="elapsedTime"
@@ -28,6 +25,7 @@
             v-if="current_question_counts === question_count"
             @restart-game="restartGame"
           />
+          <PostProject v-if="current_question_counts === question_count" />
           <TypeFormComponent
             v-if="current_question_counts !== question_count"
             v-model="typeBox"
@@ -37,7 +35,6 @@
             :currentQuestionCounts="current_question_counts"
             :questionCount="question_count"
           />
-          <PostProject />
         </div>
       </div>
     </div>
@@ -47,7 +44,6 @@
 <script>
 //Gameコンポーネント
 import CurrentQuestionComponent from "./game/CurrentQuestionComponent.vue";
-import ClearMessageComponent from "./game/ClearMessageComponent.vue";
 import ElapsedTimeComponent from "./game/ElapsedTimeComponent.vue";
 import PlayAgainButtonComponent from "./game/PlayAgainButtonComponent.vue";
 import TypeFormComponent from "./game/TypeFormComponent.vue";
@@ -82,7 +78,6 @@ export default {
   components: {
     StartButtonComponent,
     CurrentQuestionComponent,
-    ClearMessageComponent,
     ElapsedTimeComponent,
     PlayAgainButtonComponent,
     TypeFormComponent,
@@ -158,9 +153,6 @@ export default {
           let endTime = new Date();
           this.elapsedTime = (endTime - this.startTime) / 1000;
           this.setEndTime(this.elapsedTime);
-
-          // ゲーム終了時にcreateUserアクションを呼び出す
-          this.createUser();
         }
       }
     },

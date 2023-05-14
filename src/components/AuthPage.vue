@@ -30,9 +30,10 @@ export default {
       const store = useStore();
       try {
         const userInfo = await Auth.currentAuthenticatedUser();
-        const identities = JSON.parse(userInfo.attributes.identities);
-        console.dir(userInfo); // Print the user's sub attribute
-        store.commit("setUserId", identities[0].userId);
+        if (userInfo.attributes && userInfo.attributes.identities) {
+          const identities = JSON.parse(userInfo.attributes.identities);
+          store.commit("setUserId", identities[0].userId);
+        }
         store.commit("setEmail", userInfo.attributes.email);
         store.commit("setUserName", userInfo.username);
       } catch {

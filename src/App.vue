@@ -12,18 +12,12 @@
 //Componets
 import NavbarComponetVue from "./views/NavbarComponet.vue";
 import FooterComponetVue from "./views/FooterComponet.vue";
-//AWS
-import { Auth } from "aws-amplify";
-import { useStore } from "vuex";
 
 export default {
   name: "App",
   components: {
     NavbarComponetVue,
     FooterComponetVue,
-  },
-  created() {
-    this.checkAuthStatus();
   },
   methods: {
     manageBackgroundAudio() {
@@ -33,18 +27,6 @@ export default {
         audioElement.play();
       } else {
         audioElement.pause();
-      }
-    },
-    async checkAuthStatus() {
-      const store = useStore();
-      try {
-        const userInfo = await Auth.currentAuthenticatedUser();
-        const identities = JSON.parse(userInfo.attributes.identities);
-        store.commit("setUserId", identities[0].userId);
-        store.commit("setEmail", userInfo.attributes.email);
-        store.commit("setUserName", userInfo.username);
-      } catch (error) {
-        console.log("Not Yet ");
       }
     },
     toggleMode() {},

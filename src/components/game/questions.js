@@ -17,7 +17,6 @@ export const questions = [
     image: "AmericanShorthair.jpg",
   },
   {
-    // 要注意
     english: "American Bobtail",
     japanese: "アメリカンボブテイル",
     image: "AmericanBobtail.jpg",
@@ -127,7 +126,7 @@ export const questions = [
   {
     english: "Norwegian Forest Cat",
     japanese: "ノルウェージャンフォレストキャット",
-    image: "NorwegianForestCat.jpg",
+    image: "NorwegianForesCat.jpg",
   },
   {
     english: "Birman",
