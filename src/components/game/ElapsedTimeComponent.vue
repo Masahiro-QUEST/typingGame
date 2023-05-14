@@ -1,5 +1,5 @@
 <template>
-  <div class="py-16 text-4xl clear text-blue-500">{{ elapsedTime }}秒</div>
+  <div class="m-7 text-4xl clear text-blue-500">{{ elapsedTime }}秒</div>
 </template>
 
 <script>

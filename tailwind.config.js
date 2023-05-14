@@ -7,6 +7,7 @@ module.exports = {
         roboto: ["Roboto", "sans-serif"],
         nikukyu: ["Nikukyu", "sans-serif"],
         kokoro: ["Kokoro", "sans-serif"],
+        mplus: ["M PLUS ", "sans-serif"],
       },
     },
   },
