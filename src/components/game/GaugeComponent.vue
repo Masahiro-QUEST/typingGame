@@ -1,5 +1,5 @@
 <template>
-  <div class="gaugeWrapper mb-20">
+  <div class="gaugeWrapper">
     <div :style="styleObject" class="gauge"></div>
   </div>
 </template>
