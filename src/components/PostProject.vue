@@ -13,6 +13,7 @@
     >
       Submit
     </button>
+    <LoadingPartsVue :isLoading="isLoading" />
   </div>
 </template>
 
@@ -23,6 +24,7 @@ import { API } from "aws-amplify";
 import { mapState } from "vuex";
 //パッケージ
 import { v4 as uuidv4 } from "uuid";
+import LoadingPartsVue from "./LoadingParts.vue";
 
 export default {
   name: "PostPage",
@@ -30,13 +32,18 @@ export default {
     return {
       responseMessage: "",
       userName: "",
+      isLoading: false,
     };
+  },
+  components: {
+    LoadingPartsVue,
   },
   computed: {
     ...mapState(["endTime"]),
   },
   methods: {
     async createUser() {
+      this.isLoading = true;
       const apiName = "usersTableea4321bb";
       const path = "/users";
       const newUser = {
@@ -59,8 +66,37 @@ export default {
       } catch {
         console.log("Not Yet Login");
         this.responseMessage = "Error creating user. Please try again.";
+      } finally {
+        setTimeout(() => {
+          this.isLoading = false;
+          this.$router.push("/"); // Change '/' to your home page route
+        }, 2000);
       }
     },
   },
 };
 </script>
+
+<style scoped>
+.loading {
+}
+
+.spinner {
+  border: 16px solid #f3f3f3;
+  border-top: 16px solid #3498db;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+</style>
