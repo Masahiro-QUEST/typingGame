@@ -53,6 +53,28 @@ const convertUrlType = (param, type) => {
   }
 };
 
+/************************************
+ * ランキング取得のためのオブジェクト *
+ *************************************/
+console.log("Before /users/gamesPlayed handler");
+app.get(path + "/users/gamesPlayed", function (req, res) {
+  console.log("Endpoint /users/gamesPlayed was hit!"); // Add this line
+  let scanParams = {
+    TableName: tableName,
+  };
+
+  dynamodb.scan(scanParams, function (err, data) {
+    if (err) {
+      res.statusCode = 500;
+      res.json({ error: "Could not load items: " + err });
+    } else {
+      let gamesPlayed = data.Items.map((item) => item.gamesPlayed);
+      res.json(gamesPlayed);
+    }
+  });
+});
+console.log("After /users/gamesPlayed handler");
+
 /********************************
  * HTTP Get method for list objects *
  ********************************/
