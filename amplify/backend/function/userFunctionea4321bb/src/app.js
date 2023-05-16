@@ -58,7 +58,7 @@ const convertUrlType = (param, type) => {
  *************************************/
 console.log("Before /users/gamesPlayed handler");
 app.get(path + "/users/gamesPlayed", function (req, res) {
-  console.log("Endpoint /users/gamesPlayed was hit!"); // Add this line
+  console.log("Endpoint /users/gamesPlayed was hit!");
   let scanParams = {
     TableName: tableName,
   };
@@ -68,8 +68,15 @@ app.get(path + "/users/gamesPlayed", function (req, res) {
       res.statusCode = 500;
       res.json({ error: "Could not load items: " + err });
     } else {
-      let gamesPlayed = data.Items.map((item) => item.gamesPlayed);
-      res.json(gamesPlayed);
+      let rankingData = data.Items.map((item) => ({
+        username: item.username,
+        gamesPlayed: item.gamesPlayed,
+      }));
+
+      // Sort the data in descending order based on gamesPlayed
+      rankingData.sort((a, b) => b.gamesPlayed - a.gamesPlayed);
+
+      res.json(rankingData);
     }
   });
 });
