@@ -19,7 +19,7 @@
       "function": {
         "userFunctionea4321bb": {
           "deploymentBucketName": "amplify-vuetypingame-dev-224929-deployment",
-          "s3Key": "amplify-builds/userFunctionea4321bb-70436a3669692b564a65-build.zip"
+          "s3Key": "amplify-builds/userFunctionea4321bb-4e6736614657324c6d2f-build.zip"
         }
       },
       "storage": {

@@ -1,6 +1,9 @@
 <template>
   <div class="m-6">
-    <div v-if="isLoading" class="spinner"></div>
+    <div class="font-kokoro text-3xl m-3">
+      猫好きの上位10名をここに表彰しております。
+    </div>
+    <LoadingPartsVue v-if="isLoading" :isLoading="isLoading" />
     <div v-else class="shadow rounded-lg overflow-hidden">
       <div class="bg-blue-500 text-white py-2 px-4 grid grid-cols-3">
         <h2>Ranking</h2>
@@ -31,6 +34,7 @@
 import { API } from "aws-amplify";
 //パッケージ
 import "@fortawesome/fontawesome-free/css/all.css";
+import LoadingPartsVue from "./LoadingParts.vue";
 
 export default {
   name: "PostPage",
@@ -40,6 +44,9 @@ export default {
       userName: "",
       isLoading: false,
     };
+  },
+  components: {
+    LoadingPartsVue,
   },
   computed: {
     sortedResponse() {
@@ -52,13 +59,15 @@ export default {
     const apiName = "usersTableea4321bb";
     const path = "/users/users/gamesPlayed";
 
-    try {
-      const response = await API.get(apiName, path);
-      this.responseMessage = response;
-      this.isLoading = false;
-    } catch (error) {
-      console.error(error);
-    }
+    setTimeout(async () => {
+      try {
+        const response = await API.get(apiName, path);
+        this.responseMessage = response;
+        this.isLoading = false;
+      } catch (error) {
+        console.error(error);
+      }
+    }, 2000); // 3秒後にAPIへリクエストを送る
   },
 };
 </script>

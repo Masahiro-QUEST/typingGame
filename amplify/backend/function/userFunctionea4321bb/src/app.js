@@ -56,7 +56,6 @@ const convertUrlType = (param, type) => {
 /************************************
  * ランキング取得のためのオブジェクト *
  *************************************/
-console.log("Before /users/gamesPlayed handler");
 app.get(path + "/users/gamesPlayed", function (req, res) {
   console.log("Endpoint /users/gamesPlayed was hit!");
   let scanParams = {
@@ -76,11 +75,13 @@ app.get(path + "/users/gamesPlayed", function (req, res) {
       // Sort the data in descending order based on gamesPlayed
       rankingData.sort((a, b) => b.gamesPlayed - a.gamesPlayed);
 
+      // Return only the top 10 items
+      rankingData = rankingData.slice(0, 10);
+
       res.json(rankingData);
     }
   });
 });
-console.log("After /users/gamesPlayed handler");
 
 /********************************
  * HTTP Get method for list objects *
