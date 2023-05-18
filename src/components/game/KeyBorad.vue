@@ -1,6 +1,6 @@
 <!-- Keyboard.vue -->
 <template>
-  <div class="keyboard">
+  <div class="mb-5 keyboard">
     <div class="keyboard-row" v-for="(row, index) in keyboardRows" :key="index">
       <keyboard-key
         v-for="char in row"

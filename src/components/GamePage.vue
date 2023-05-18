@@ -31,7 +31,7 @@
             v-if="current_question_counts !== question_count"
             v-model="typeBox"
           />
-          <KeyBoradVue v-if="startFlg" />
+          <KeyBoradVue v-if="current_question_counts !== question_count" />
           <GaugeComponent :styleObject="styleObject" />
           <QuestionCounterComponent
             :currentQuestionCounts="current_question_counts"
@@ -52,7 +52,7 @@ import TypeFormComponent from "./game/TypeFormComponent.vue";
 import GaugeComponent from "./game/GaugeComponent.vue";
 import QuestionCounterComponent from "./game/QuestionCounterComponent.vue";
 import StartButtonComponent from "./game/StartButtonComponent.vue";
-import KeyBoradVue from "./KeyBorad.vue";
+import KeyBoradVue from "./game/KeyBorad.vue";
 
 //quesions
 import { questions } from "./game/questions.js";

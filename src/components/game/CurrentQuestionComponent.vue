@@ -4,24 +4,36 @@
       <img
         :src="require(`@/assets/cat/${currentQuestionImage}`)"
         alt="Current cat"
-        class="cat-image"
-        :style="{ width: '50%' }"
+        class="mb-3 cat-image"
+        :style="{ width: '75%' }"
       />
-      <div v-if="!isLastQuestion" class="py-12 text-3xl text-white">
-        <div>{{ currentQuestionEnglish }}</div>
-        <div class="text-xl">{{ currentQuestionJapanese }}</div>
+      <div v-if="!isLastQuestion" class="text-3xl text-white">
+        <div class="font-Kokoro">{{ currentQuestionJapanese }}</div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   props: {
     currentQuestionEnglish: String,
     currentQuestionJapanese: String,
     isLastQuestion: Boolean,
     currentQuestionImage: String,
+  },
+  watch: {
+    currentQuestionEnglish: {
+      immediate: true,
+      handler(newQuestion) {
+        this.updateCurrentQuestionEnglish(newQuestion);
+      },
+    },
+  },
+  methods: {
+    ...mapActions(["updateCurrentQuestionEnglish"]),
   },
 };
 </script>

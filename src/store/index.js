@@ -9,6 +9,9 @@ export default createStore({
     email: "",
     userName: "",
     activeKey: null,
+    handleInput: "",
+    userInput: "",
+    currentQuestionEnglish: "",
   },
   mutations: {
     setUserId(state, userId) {
@@ -25,6 +28,15 @@ export default createStore({
     },
     setActiveKey(state, key) {
       state.activeKey = key;
+    },
+    setHandleInput(state, input) {
+      state.handleInput = input;
+    },
+    updateUserInput(state, input) {
+      state.userInput = input;
+    },
+    updateCurrentQuestionEnglish(state, question) {
+      state.currentQuestionEnglish = question;
     },
   },
   actions: {
@@ -51,6 +63,12 @@ export default createStore({
       } catch (error) {
         console.error("Error creating user:", error);
       }
+    },
+    updateUserInput({ commit }, input) {
+      commit("updateUserInput", input);
+    },
+    updateCurrentQuestionEnglish({ commit }, question) {
+      commit("updateCurrentQuestionEnglish", question);
     },
   },
   modules: {},
