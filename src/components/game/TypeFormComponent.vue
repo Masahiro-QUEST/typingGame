@@ -32,7 +32,10 @@ export default {
         if (this.userInput[i] === this.currentQuestionEnglish[i]) {
           // 正しく入力した文字は緑色
           result += `<span style="color: green;">${this.currentQuestionEnglish[i]}</span>`;
-        } else if (this.userInput[i] !== undefined) {
+        } else if (
+          this.userInput[i] !== undefined &&
+          this.userInput[i] !== this.currentQuestionEnglish[i]
+        ) {
           // 間違って入力した文字は赤色
           result += `<span style="color: red;">${this.currentQuestionEnglish[i]}</span>`;
         } else {

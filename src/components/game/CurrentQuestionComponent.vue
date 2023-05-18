@@ -29,11 +29,12 @@ export default {
       immediate: true,
       handler(newQuestion) {
         this.updateCurrentQuestionEnglish(newQuestion);
+        this.resetUserInput();
       },
     },
   },
   methods: {
-    ...mapActions(["updateCurrentQuestionEnglish"]),
+    ...mapActions(["updateCurrentQuestionEnglish", "resetUserInput"]),
   },
 };
 </script>

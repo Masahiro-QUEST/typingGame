@@ -38,6 +38,9 @@ export default createStore({
     updateCurrentQuestionEnglish(state, question) {
       state.currentQuestionEnglish = question;
     },
+    resetUserInput(state) {
+      state.userInput = "";
+    },
   },
   actions: {
     async createUser({ state }) {
@@ -69,6 +72,9 @@ export default createStore({
     },
     updateCurrentQuestionEnglish({ commit }, question) {
       commit("updateCurrentQuestionEnglish", question);
+    },
+    resetUserInput({ commit }) {
+      commit(`resetUserInput`);
     },
   },
   modules: {},
