@@ -8,6 +8,7 @@ export default createStore({
     endTime: "",
     email: "",
     userName: "",
+    activeKey: null,
   },
   mutations: {
     setUserId(state, userId) {
@@ -21,6 +22,9 @@ export default createStore({
     },
     setUserName(state, userName) {
       state.userName = userName;
+    },
+    setActiveKey(state, key) {
+      state.activeKey = key;
     },
   },
   actions: {

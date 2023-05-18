@@ -31,6 +31,7 @@
             v-if="current_question_counts !== question_count"
             v-model="typeBox"
           />
+          <KeyBoradVue v-if="startFlg" />
           <GaugeComponent :styleObject="styleObject" />
           <QuestionCounterComponent
             :currentQuestionCounts="current_question_counts"
@@ -51,13 +52,14 @@ import TypeFormComponent from "./game/TypeFormComponent.vue";
 import GaugeComponent from "./game/GaugeComponent.vue";
 import QuestionCounterComponent from "./game/QuestionCounterComponent.vue";
 import StartButtonComponent from "./game/StartButtonComponent.vue";
+import KeyBoradVue from "./KeyBorad.vue";
+
 //quesions
 import { questions } from "./game/questions.js";
 //DynamoDB
 import PostProject from "./PostProject.vue";
 //フレームワーク
 import { mapMutations, mapActions } from "vuex";
-
 export default {
   name: "NyanStage",
   data() {
@@ -85,6 +87,7 @@ export default {
     GaugeComponent,
     QuestionCounterComponent,
     PostProject,
+    KeyBoradVue,
   },
   computed: {
     styleObject: function () {

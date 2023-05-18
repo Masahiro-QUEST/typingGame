@@ -6,8 +6,9 @@
       type="text"
       autocomplete="off"
       class="typeForm text-white font-bold text-lg text-center bg-transparent border-b-2 border-white w-64 focus:outline-none"
-      @input="$emit('update:modelValue', innerValue)"
+      @input="handleInput"
     />
+    <div v-html="highlightedValue"></div>
   </div>
 </template>
 
@@ -21,10 +22,29 @@ export default {
       innerValue: this.modelValue,
     };
   },
+  computed: {
+    highlightedValue() {
+      return this.innerValue.replace(
+        /\s/g,
+        '<span class="highlighted-whitespace">$&</span>'
+      );
+    },
+  },
   watch: {
     modelValue(newValue) {
       this.innerValue = newValue;
     },
   },
+  methods: {
+    handleInput() {
+      this.$emit("update:modelValue", this.innerValue);
+    },
+  },
 };
 </script>
+
+<style>
+.highlighted-whitespace {
+  background-color: #ff0000; /* ハイライトしたい色に変更してください */
+}
+</style>

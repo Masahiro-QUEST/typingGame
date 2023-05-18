@@ -17,9 +17,21 @@
           class="border-b border-gray-200 py-2 grid grid-cols-3 items-center"
         >
           <span class="text-4xl">
-            <i v-if="index === 0" class="fas fa-crown text-yellow-400"></i>
-            <i v-else-if="index === 1" class="fas fa-medal text-silver"></i>
-            <i v-else-if="index === 2" class="fas fa-medal text-bronze"></i>
+            <i
+              v-if="index === 0"
+              class="fa-solid fa-cat fa-bounce"
+              style="color: #ffd700"
+            ></i>
+            <i
+              v-else-if="index === 1"
+              class="fa-solid fa-shield-cat fa-flip"
+              style="color: #c0c0c0"
+            ></i>
+            <i
+              v-else-if="index === 2"
+              class="fa-solid fa-paw"
+              style="color: #b87333"
+            ></i>
           </span>
           <span>{{ item.username }}</span>
           <span>{{ item.gamesPlayed }}</span>
@@ -28,7 +40,6 @@
     </div>
   </div>
 </template>
-
 <script>
 // AWS
 import { API } from "aws-amplify";
@@ -63,6 +74,7 @@ export default {
       try {
         const response = await API.get(apiName, path);
         this.responseMessage = response;
+        console.log(response);
         this.isLoading = false;
       } catch (error) {
         console.error(error);

@@ -1,13 +1,16 @@
 <template>
   <div>
-    <img
-      :src="require(`@/assets/cat/${currentQuestionImage}`)"
-      alt="Current cat"
-      class="cat-image"
-    />
-    <div v-if="!isLastQuestion" class="py-16 text-5xl text-white">
-      <div>{{ currentQuestionEnglish }}</div>
-      <div class="text-xl">{{ currentQuestionJapanese }}</div>
+    <div class="flex flex-col justify-center items-center">
+      <img
+        :src="require(`@/assets/cat/${currentQuestionImage}`)"
+        alt="Current cat"
+        class="cat-image"
+        :style="{ width: '50%' }"
+      />
+      <div v-if="!isLastQuestion" class="py-12 text-3xl text-white">
+        <div>{{ currentQuestionEnglish }}</div>
+        <div class="text-xl">{{ currentQuestionJapanese }}</div>
+      </div>
     </div>
   </div>
 </template>

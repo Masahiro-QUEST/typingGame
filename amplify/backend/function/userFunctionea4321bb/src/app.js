@@ -72,8 +72,8 @@ app.get(path + "/users/gamesPlayed", function (req, res) {
         gamesPlayed: item.gamesPlayed,
       }));
 
-      // Sort the data in descending order based on gamesPlayed
-      rankingData.sort((a, b) => b.gamesPlayed - a.gamesPlayed);
+      // Sort the data in ascending order based on gamesPlayed
+      rankingData.sort((a, b) => a.gamesPlayed - b.gamesPlayed);
 
       // Return only the top 10 items
       rankingData = rankingData.slice(0, 10);
