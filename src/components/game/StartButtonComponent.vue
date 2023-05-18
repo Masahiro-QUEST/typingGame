@@ -4,6 +4,28 @@
     style="margin: 15px"
     @click="$emit('game-start')"
   >
-    スタートニャ
+    スペースを押してスタートニャ
   </button>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      onKeyup: null,
+    };
+  },
+  mounted() {
+    this.onKeyup = (event) => {
+      if (event.key === " ") {
+        this.$emit("game-start");
+      }
+    };
+    window.addEventListener("keyup", this.onKeyup);
+  },
+  beforeUnmount() {
+    // Don't forget to remove the event listener when the component is destroyed.
+    window.removeEventListener("keyup", this.onKeyup);
+  },
+};
+</script>
