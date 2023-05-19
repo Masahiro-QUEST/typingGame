@@ -7,7 +7,7 @@
         :class="{ 'falling-cat': true, paused: hideFallingCats }"
       ></div>
       <div
-        class="bg-gray-900 flex flex-col justify-center items-center"
+        class="bg-gray-500 flex flex-col justify-center items-center"
         style="height: 80vh"
       >
         <StartButtonComponent v-if="!startFlg" @game-start="gameStart" />
