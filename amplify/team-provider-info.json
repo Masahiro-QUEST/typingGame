@@ -19,11 +19,12 @@
       "function": {
         "userFunctionea4321bb": {
           "deploymentBucketName": "amplify-vuetypingame-dev-224929-deployment",
-          "s3Key": "amplify-builds/userFunctionea4321bb-5a7341474f3957745468-build.zip"
+          "s3Key": "amplify-builds/userFunctionea4321bb-79307447733730355133-build.zip"
         }
       },
       "storage": {
-        "usersTableea4321bb": {}
+        "usersTableea4321bb": {},
+        "UserScores": {}
       },
       "api": {
         "usersTableea4321bb": {}

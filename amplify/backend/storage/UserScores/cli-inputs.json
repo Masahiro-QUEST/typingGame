@@ -1,0 +1,14 @@
+{
+  "resourceName": "UserScores",
+  "tableName": "UserScores",
+  "partitionKey": {
+    "fieldName": "userName",
+    "fieldType": "string"
+  },
+  "sortKey": {
+    "fieldName": "stage",
+    "fieldType": "string"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}

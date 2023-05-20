@@ -11,17 +11,17 @@
         >
           <img
             :src="require('@/assets/nyanstage1.png')"
-            class="w-32 h-32 mb-2"
+            class="w-36 h-36 mb-2"
           />
           にゃんにゃんステージ
         </div>
         <div
-          @click="navigateToNyanStage"
+          @click="navigatorToWanStage"
           class="nyan-stage-box cursor-pointer text-center py-4 px-8 text-white font-bold text-xl rounded-md hover:bg-blue-600 transition duration-200 flex flex-col items-center justify-center bg-opacity-50 hover:bg-opacity-100"
         >
           <img
             :src="require('@/assets/dogstage2.png')"
-            class="w-32 h-32 mb-2"
+            class="w-36 h-36 mb-2"
           />
           わんわんステージ
         </div>
@@ -49,6 +49,9 @@ export default {
   methods: {
     navigateToNyanStage() {
       this.$router.push("/nyanstage");
+    },
+    navigatorToWanStage() {
+      this.$router.push("/wanstage");
     },
   },
   mounted: function () {},

@@ -1,10 +1,13 @@
+//ライブラリ
 import { createRouter, createWebHistory } from "vue-router";
-
+//コンポーネント
 import FrontPage from "../components/FrontPage";
 import AuthPage from "../components/AuthPage.vue";
 import PostPage from "../components/PostProject.vue";
-import GamePage from "../components/GamePage.vue";
 import RankingPage from "../components/RankingPage.vue";
+//stage
+import NyanStage from "../components/stage/NyanStage.vue";
+import WanStage from "../components/stage/WanStage.vue";
 
 const routes = [
   {
@@ -25,7 +28,12 @@ const routes = [
   {
     path: "/nyanstage",
     name: "NyanStage",
-    component: GamePage,
+    component: NyanStage,
+  },
+  {
+    path: "/wanstage",
+    name: "WanStage",
+    component: WanStage,
   },
   {
     path: "/ranking",

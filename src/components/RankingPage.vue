@@ -33,13 +33,16 @@
               style="color: #b87333"
             ></i>
           </span>
-          <span>{{ item.username }}</span>
-          <span>{{ item.gamesPlayed }}</span>
+          <span>{{ item.userName }}</span>
+          <!-- userNameフィールド名を正しいものに変更 -->
+          <span>{{ item.score }}</span>
+          <!-- scoreフィールド名を正しいものに変更 -->
         </div>
       </div>
     </div>
   </div>
 </template>
+
 <script>
 // AWS
 import { API } from "aws-amplify";

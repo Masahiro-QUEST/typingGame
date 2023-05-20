@@ -23,7 +23,6 @@ import { API } from "aws-amplify";
 //内部
 import { mapState } from "vuex";
 //パッケージ
-import { v4 as uuidv4 } from "uuid";
 import LoadingPartsVue from "./LoadingParts.vue";
 
 export default {
@@ -48,12 +47,9 @@ export default {
       const path = "/users";
       const newUser = {
         body: {
-          userId: uuidv4(),
-          username: this.userName,
-          password: "password1",
-          email: "test",
-          gamesPlayed: this.endTime,
-          averageSpeed: 0,
+          userName: this.userName,
+          stage: "nyanStage",
+          score: this.endTime,
         },
         headers: {
           "Content-Type": "application/json",

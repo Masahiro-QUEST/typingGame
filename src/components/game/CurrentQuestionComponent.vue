@@ -2,7 +2,7 @@
   <div>
     <div class="flex flex-col justify-center items-center">
       <img
-        :src="require(`@/assets/cat/${currentQuestionImage}`)"
+        :src="require(`@/assets/${StageName}/${currentQuestionImage}`)"
         alt="Current cat"
         class="mb-3 cat-image"
         :style="{ width: '75%' }"
@@ -23,6 +23,7 @@ export default {
     currentQuestionJapanese: String,
     isLastQuestion: Boolean,
     currentQuestionImage: String,
+    StageName: String,
   },
   watch: {
     currentQuestionEnglish: {

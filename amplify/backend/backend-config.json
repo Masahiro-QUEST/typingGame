@@ -89,6 +89,10 @@
     }
   },
   "storage": {
+    "UserScores": {
+      "providerPlugin": "awscloudformation",
+      "service": "DynamoDB"
+    },
     "usersTableea4321bb": {
       "providerPlugin": "awscloudformation",
       "service": "DynamoDB"

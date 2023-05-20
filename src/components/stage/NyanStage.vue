@@ -14,6 +14,7 @@
         <div v-if="startFlg" class="flex flex-col justify-center items-center">
           <CurrentQuestionComponent
             :currentQuestionImage="this.current_cat_image"
+            :StageName="StageName"
             :currentQuestionEnglish="current_question_english"
             :currentQuestionJapanese="current_question_japanese"
             :isLastQuestion="current_question_counts === question_count"
@@ -45,19 +46,19 @@
 
 <script>
 //Gameコンポーネント
-import CurrentQuestionComponent from "./game/CurrentQuestionComponent.vue";
-import ElapsedTimeComponent from "./game/ElapsedTimeComponent.vue";
-import PlayAgainButtonComponent from "./game/PlayAgainButtonComponent.vue";
-import TypeFormComponent from "./game/TypeFormComponent.vue";
-import GaugeComponent from "./game/GaugeComponent.vue";
-import QuestionCounterComponent from "./game/QuestionCounterComponent.vue";
-import StartButtonComponent from "./game/StartButtonComponent.vue";
-import KeyBoradVue from "./game/KeyBorad.vue";
+import CurrentQuestionComponent from "../game/CurrentQuestionComponent.vue";
+import ElapsedTimeComponent from "../game/ElapsedTimeComponent.vue";
+import PlayAgainButtonComponent from "../game/PlayAgainButtonComponent.vue";
+import TypeFormComponent from "../game/TypeFormComponent.vue";
+import GaugeComponent from "../game/GaugeComponent.vue";
+import QuestionCounterComponent from "../game/QuestionCounterComponent.vue";
+import StartButtonComponent from "../game/StartButtonComponent.vue";
+import KeyBoradVue from "../game/KeyBorad.vue";
 
 //quesions
-import { questions } from "./game/questions.js";
+import { questions } from "../game/NyanQuestions.js";
 //DynamoDB
-import PostProject from "./PostProject.vue";
+import PostProject from "../PostProject.vue";
 //フレームワーク
 import { mapMutations, mapActions } from "vuex";
 export default {
@@ -76,6 +77,8 @@ export default {
       current_question_english: "",
       current_question_japanese: "",
       current_cat_image: "",
+      StageName: "cat",
+      remainingQuestions: [...questions],
     };
   },
   components: {
@@ -108,19 +111,33 @@ export default {
       });
     },
     restartGame: function () {
+      // Reset the list of remaining questions
+      this.remainingQuestions = [...questions];
+      // Get a new random question
+      const randomQuestion = this.getRandomQuestion();
+      // Set the current question attributes
+      this.current_question_english = randomQuestion.english;
+      this.current_question_japanese = randomQuestion.japanese;
+      this.current_cat_image = randomQuestion.image;
+      // Reset other game states
       this.current_question_counts = 0;
       this.startTime = new Date();
-      this.questions = questions;
-      this.current_question = this.questions[0];
       this.startFlg = true;
       this.typeBox = "";
+      // Focus the type form
       this.$nextTick(function () {
         document.getElementById("typeForm").focus();
       });
     },
     getRandomQuestion() {
-      const randomIndex = Math.floor(Math.random() * this.questions.length);
-      return this.questions[randomIndex];
+      // Choose a random question and remove it from the list
+      const randomIndex = Math.floor(
+        Math.random() * this.remainingQuestions.length
+      );
+      const randomQuestion = this.remainingQuestions[randomIndex];
+      this.remainingQuestions.splice(randomIndex, 1);
+
+      return randomQuestion;
     },
     // mapMutationsを使ってミューテーションをメソッドとしてマッピング
     ...mapMutations([

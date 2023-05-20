@@ -41,6 +41,16 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "storage": {
+    "UserScores": {
+      "Arn": "string",
+      "Name": "string",
+      "PartitionKeyName": "string",
+      "PartitionKeyType": "string",
+      "Region": "string",
+      "SortKeyName": "string",
+      "SortKeyType": "string",
+      "StreamArn": "string"
+    },
     "usersTableea4321bb": {
       "Arn": "string",
       "Name": "string",

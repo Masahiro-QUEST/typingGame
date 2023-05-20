@@ -122,7 +122,6 @@ export const questions = [
     japanese: "トンキニーズ",
     image: "Tonkinese.jpg",
   },
-  // Not Yet
   {
     english: "Norwegian Forest Cat",
     japanese: "ノルウェージャンフォレストキャット",
@@ -153,7 +152,6 @@ export const questions = [
     japanese: "ピクシーボブ",
     image: "Pixiebob.jpg",
   },
-  //Not Yet
   {
     english: "Himalayan",
     japanese: "ヒマラヤン",

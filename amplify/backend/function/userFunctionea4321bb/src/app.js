@@ -59,7 +59,7 @@ const convertUrlType = (param, type) => {
 app.get(path + "/users/gamesPlayed", function (req, res) {
   console.log("Endpoint /users/gamesPlayed was hit!");
   let scanParams = {
-    TableName: tableName,
+    TableName: "UserScores-dev",
   };
 
   dynamodb.scan(scanParams, function (err, data) {
@@ -67,18 +67,7 @@ app.get(path + "/users/gamesPlayed", function (req, res) {
       res.statusCode = 500;
       res.json({ error: "Could not load items: " + err });
     } else {
-      let rankingData = data.Items.map((item) => ({
-        username: item.username,
-        gamesPlayed: item.gamesPlayed,
-      }));
-
-      // Sort the data in ascending order based on gamesPlayed
-      rankingData.sort((a, b) => a.gamesPlayed - b.gamesPlayed);
-
-      // Return only the top 10 items
-      rankingData = rankingData.slice(0, 10);
-
-      res.json(rankingData);
+      res.json(data.Items);
     }
   });
 });
@@ -186,7 +175,7 @@ app.put(path, function (req, res) {
   }
 
   let putItemParams = {
-    TableName: tableName,
+    TableName: "UserScores",
     Item: req.body,
   };
   dynamodb.put(putItemParams, (err, data) => {
@@ -204,17 +193,17 @@ app.put(path, function (req, res) {
  *************************************/
 
 app.post(path, function (req, res) {
-  if (userIdPresent) {
-    req.body["userId"] =
-      req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH;
-  }
-
   let putItemParams = {
-    TableName: tableName,
-    Item: req.body,
+    TableName: "UserScores-dev",
+    Item: {
+      userName: req.body.userName,
+      stage: req.body.stage,
+      score: req.body.score,
+    },
   };
   dynamodb.put(putItemParams, (err, data) => {
     if (err) {
+      console.error("DynamoDB Error:", err); // Add this line
       res.statusCode = 500;
       res.json({ error: err, url: req.url, body: req.body });
     } else {
