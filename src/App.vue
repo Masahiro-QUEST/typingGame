@@ -1,10 +1,8 @@
 <template>
   <div class="d-flex flex-column min-h-screen">
     <NavbarComponetVue />
-    <div class="flex-grow">
-      <!-- <SidebarComponetVue /> -->
-      <router-view />
-    </div>
+    <!-- <SidebarComponetVue /> -->
+    <router-view />
     <FooterComponetVue />
   </div>
 </template>

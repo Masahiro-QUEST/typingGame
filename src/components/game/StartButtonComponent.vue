@@ -4,12 +4,13 @@
     style="margin: 15px"
     @click="$emit('game-start')"
   >
-    スペースを押してスタートニャ
+    {{ startText }}
   </button>
 </template>
 
 <script>
 export default {
+  props: ['startText'],
   data() {
     return {
       onKeyup: null,

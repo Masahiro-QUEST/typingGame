@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div
-      class="bg-gray-500 flex flex-col justify-center items-center min-h-[800px]"
-    >
+    <div class="bg-gray-500 flex flex-col justify-center items-center min-h-[800px] relative overflow-hidden" style="height: 80vh; overflow: hidden;">
+      <div v-for="i in 20" :key="i" class="bubble"></div>
+
       <TitleComponent />
       <div class="flex flex-row justify-around">
         <div
@@ -36,8 +36,9 @@
 </template>
 
 <script>
-//Gameコンポーネント
+import anime from 'animejs';
 import TitleComponent from "./game/TitleComponet.vue";
+
 export default {
   data() {
     return {};
@@ -45,7 +46,29 @@ export default {
   components: {
     TitleComponent,
   },
-  computed: {},
+  mounted: function () {
+    const bubbleElements = document.querySelectorAll('.bubble');
+
+    bubbleElements.forEach((element) => {
+      const animateBubble = () => {
+        const xPos = Math.random() * window.innerWidth;
+        const duration = Math.random() * 2000 + 3000;  // 3-5 seconds
+
+        element.style.left = `${xPos}px`;
+
+        anime({
+          targets: element,
+          top: [`${window.innerHeight}px`, '0px'],
+          opacity: [0.5, 0],
+          duration: duration,
+          easing: 'linear',
+          complete: animateBubble  // animate another bubble after one has completed its animation
+        });
+      };
+
+      animateBubble();  // start the first bubble animation
+    });
+  },
   methods: {
     navigateToNyanStage() {
       this.$router.push("/nyanstage");
@@ -54,11 +77,21 @@ export default {
       this.$router.push("/wanstage");
     },
   },
-  mounted: function () {},
-  watch: {},
 };
 </script>
+
 <style>
+.bubble {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #FF69B4;
+  border-radius: 50%;
+  bottom: -10px; 
+  opacity: 0.5;
+}
+
+/* Your existing CSS */
 .nyan-stage-box {
   margin: 1rem;
   background: linear-gradient(90deg);

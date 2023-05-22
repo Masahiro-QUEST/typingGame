@@ -10,7 +10,7 @@
         class="bg-gray-500 flex flex-col justify-center items-center"
         style="height: 80vh"
       >
-        <StartButtonComponent v-if="!startFlg" @game-start="gameStart" />
+        <StartButtonComponent startText="スペースを押してスタートワン" v-if="!startFlg" @game-start="gameStart" />
         <div v-if="startFlg" class="flex flex-col justify-center items-center">
           <CurrentQuestionComponent
             :currentQuestionImage="this.current_cat_image"

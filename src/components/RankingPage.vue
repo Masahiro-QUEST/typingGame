@@ -82,10 +82,10 @@ export default {
       try {
         const response = await API.get(apiName, path);
         this.responseMessage = response;
-        console.log(response);
+        // console.log(response);
         this.isLoading = false;
       } catch (error) {
-        console.error(error);
+        // console.error(error);
       }
     }, 2000); // 3秒後にAPIへリクエストを送る
   },

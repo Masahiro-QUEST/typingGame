@@ -31,4 +31,36 @@ export const questions = [
     japanese: "アメリカンスタッフォードシャーテリア",
     image: "AmericanStaffordshireTerrier.jpg",
   },
+  //Not Yet
+  {
+    english: "American Pit Bull Terrier",
+    japanese: "アメリカンピットブルテリア",
+    image: "AmericanPitBullTerrier.jpg",
+    },
+    {
+    english: "Alaskan Malamute",
+    japanese: "アラスカンマラミュート",
+    image: "AlaskanMalamute.jpg",
+    },
+    {
+    english: "Italian Greyhound",
+    japanese: "イタリアングレーハウンド",
+    image: "ItalianGreyhound.jpg",
+    },
+    {
+    english: "English Cocker Spaniel",
+    japanese: "イングリッシュコッカースパニエル",
+    image: "EnglishCockerSpaniel.jpg",
+    },
+    {
+    english: "English Springer Spaniel",
+    japanese: "イングリッシュスプリンガースパニエル",
+    image: "EnglishSpringerSpaniel.jpg",
+    },
+    {
+    english: "English Setter",
+    japanese: "イングリッシュセッター",
+    image: "EnglishSetter.jpg",
+    }
+     //Not Yet
 ];
