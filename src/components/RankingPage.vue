@@ -1,42 +1,47 @@
 <template>
   <div class="m-6">
     <div class="font-kokoro text-3xl m-3">
-      猫好きの上位10名をここに表彰しております。
+      上位10名をここに表彰しております。
     </div>
     <LoadingPartsVue v-if="isLoading" :isLoading="isLoading" />
-    <div v-else class="shadow rounded-lg overflow-hidden">
-      <div class="bg-blue-500 text-white py-2 px-4 grid grid-cols-3">
-        <h2>Ranking</h2>
-        <h2>Name</h2>
-        <h2>Score</h2>
-      </div>
-      <div class="list-none pl-5">
-        <div
-          v-for="(item, index) in responseMessage"
-          :key="index"
-          class="border-b border-gray-200 py-2 grid grid-cols-3 items-center"
-        >
-          <span class="text-4xl">
-            <i
-              v-if="index === 0"
-              class="fa-solid fa-cat fa-bounce"
-              style="color: #ffd700"
-            ></i>
-            <i
-              v-else-if="index === 1"
-              class="fa-solid fa-shield-cat fa-flip"
-              style="color: #c0c0c0"
-            ></i>
-            <i
-              v-else-if="index === 2"
-              class="fa-solid fa-paw"
-              style="color: #b87333"
-            ></i>
-          </span>
-          <span>{{ item.userName }}</span>
-          <!-- userNameフィールド名を正しいものに変更 -->
-          <span>{{ item.score }}</span>
-          <!-- scoreフィールド名を正しいものに変更 -->
+    <div v-else>
+      <div
+        v-for="(stage, stageName) in responseMessage"
+        :key="stageName"
+        class="shadow rounded-lg overflow-hidden m-3"
+      >
+        <div class="font-kokoro text-2xl m-3">Stage: {{ stageName }}</div>
+        <div class="bg-blue-500 text-white py-2 px-4 grid grid-cols-3">
+          <h2>Ranking</h2>
+          <h2>Name</h2>
+          <h2>Score</h2>
+        </div>
+        <div class="list-none pl-5">
+          <div
+            v-for="(item, index) in stage.slice(0, 10)"
+            :key="index"
+            class="border-b border-gray-200 py-2 grid grid-cols-3 items-center"
+          >
+            <span class="text-4xl">
+              <i
+                v-if="index === 0"
+                class="fa-solid fa-cat fa-bounce"
+                style="color: #ffd700"
+              ></i>
+              <i
+                v-else-if="index === 1"
+                class="fa-solid fa-shield-cat fa-flip"
+                style="color: #c0c0c0"
+              ></i>
+              <i
+                v-else-if="index === 2"
+                class="fa-solid fa-paw"
+                style="color: #b87333"
+              ></i>
+            </span>
+            <span>{{ item.userName }}</span>
+            <span>{{ item.score }}</span>
+          </div>
         </div>
       </div>
     </div>

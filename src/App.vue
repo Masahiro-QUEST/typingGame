@@ -2,6 +2,7 @@
   <div class="d-flex flex-column min-h-screen">
     <NavbarComponetVue />
     <div class="flex-grow">
+      <!-- <SidebarComponetVue /> -->
       <router-view />
     </div>
     <FooterComponetVue />
@@ -12,12 +13,14 @@
 //Componets
 import NavbarComponetVue from "./views/NavbarComponet.vue";
 import FooterComponetVue from "./views/FooterComponet.vue";
+// import SidebarComponetVue from "./views/SidebarComponet.vue";
 
 export default {
   name: "App",
   components: {
     NavbarComponetVue,
     FooterComponetVue,
+    // SidebarComponetVue,
   },
   methods: {
     manageBackgroundAudio() {

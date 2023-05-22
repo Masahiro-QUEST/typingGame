@@ -6,6 +6,7 @@
       type="text"
       placeholder="ニックネーム"
       class="m-4"
+      @keydown.space.prevent
     />
     <button
       @click="createUser"
@@ -48,7 +49,7 @@ export default {
       const newUser = {
         body: {
           userName: this.userName,
-          stage: "nyanStage",
+          stage: this.$route.path,
           score: this.endTime,
         },
         headers: {

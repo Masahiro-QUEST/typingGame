@@ -53,6 +53,12 @@ const convertUrlType = (param, type) => {
   }
 };
 
+// ステージ名のマッピング
+let stageNameMapping = {
+  "/nyanstage": "にゃんステージ",
+  "/wanstage": "わんステージ",
+};
+
 /************************************
  * ランキング取得のためのオブジェクト *
  *************************************/
@@ -67,7 +73,21 @@ app.get(path + "/users/gamesPlayed", function (req, res) {
       res.statusCode = 500;
       res.json({ error: "Could not load items: " + err });
     } else {
-      res.json(data.Items);
+      let result = {};
+      data.Items.forEach(function (item) {
+        // ステージ名のマッピングを適用
+        let stageName = stageNameMapping[item.stage] || item.stage;
+        if (!result[stageName]) {
+          result[stageName] = [];
+        }
+        item.stage = stageName;
+        result[stageName].push(item);
+      });
+
+      for (let stage in result) {
+        result[stage].sort((a, b) => a.score - b.score);
+      }
+      res.json(result);
     }
   });
 });
