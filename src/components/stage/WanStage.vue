@@ -4,7 +4,7 @@
       <div
         v-for="i in 10"
         :key="i"
-        :class="{ 'falling-cat': true, paused: hideFallingCats }"
+        :class="{ 'falling-dog': true, paused: hideFallingCats }"
       ></div>
       <div
         class="bg-gray-500 flex flex-col justify-center items-center"
@@ -153,7 +153,7 @@ export default {
     this.current_question_english = randomQuestion.english;
     this.current_question_japanese = randomQuestion.japanese;
     this.question_count = 5;
-    const fallingCats = this.$el.querySelectorAll(".falling-cat");
+    const fallingCats = this.$el.querySelectorAll(".falling-dog");
     fallingCats.forEach((cat, index) => {
       cat.style.setProperty("--i", index);
     });
@@ -204,11 +204,11 @@ export default {
   }
 }
 
-.falling-cat {
+.falling-dog {
   position: absolute;
   width: 50px; /* 画像の幅を縮小 */
   height: 50px; /* 画像の高さを縮小 */
-  background-image: url(@/assets/background_cat1.png);
+  background-image: url(@/assets/background_dog1.png);
   background-size: cover; /* 画像を要素のサイズに合わせる */
   animation: fall 5s linear infinite;
   animation-delay: calc(5s * var(--i) / 10);
@@ -216,7 +216,7 @@ export default {
 }
 
 .cat-typing-game {
-  background-image: url(@/assets/background_cat1.png);
+  background-image: url(@/assets/background_dog1.png);
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
