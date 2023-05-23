@@ -8,10 +8,10 @@
       <div
         v-for="(stage, stageName) in responseMessage"
         :key="stageName"
-        class="shadow rounded-lg overflow-hidden m-3"
+        class="max-w-3xl mx-auto shadow rounded-lg overflow-hidden m-3"
       >
-        <div class="font-kokoro text-2xl m-3">Stage: {{ stageName }}</div>
-        <div class="bg-blue-500 text-white py-2 px-4 grid grid-cols-3">
+        <div class="font-kokoro text-2xl m-3 font-bold">{{ stageName }}</div>
+        <div class="bg-orange-500 text-white py-2 px-4 grid grid-cols-4">
           <h2>Ranking</h2>
           <h2>Name</h2>
           <h2>Score</h2>
@@ -20,22 +20,22 @@
           <div
             v-for="(item, index) in stage.slice(0, 10)"
             :key="index"
-            class="border-b border-gray-200 py-2 grid grid-cols-3 items-center"
+            class="border-b border-gray-200 grid grid-cols-4 items-center bg-orange-100"
           >
             <span class="text-4xl">
               <i
                 v-if="index === 0"
-                class="fa-solid fa-cat fa-bounce"
+                class="fa-sharp fa-solid fa-chess-king fa-beat"
                 style="color: #ffd700"
               ></i>
               <i
                 v-else-if="index === 1"
-                class="fa-solid fa-shield-cat fa-flip"
+                class="fa-sharp fa-solid fa-chess-queen fa-flip"
                 style="color: #c0c0c0"
               ></i>
               <i
                 v-else-if="index === 2"
-                class="fa-solid fa-paw"
+                class="fa-sharp fa-solid fa-chess-knight"
                 style="color: #b87333"
               ></i>
             </span>
@@ -47,6 +47,7 @@
     </div>
   </div>
 </template>
+
 
 <script>
 // AWS

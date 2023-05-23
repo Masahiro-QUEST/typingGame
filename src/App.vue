@@ -1,11 +1,14 @@
 <template>
-  <div class="d-flex flex-column min-h-screen">
-    <NavbarComponetVue />
+  <div class="d-flex min-h-screen">
     <!-- <SidebarComponetVue /> -->
-    <router-view />
-    <FooterComponetVue />
+    <div class="d-flex flex-column flex-grow">
+      <NavbarComponetVue />
+      <router-view />
+      <FooterComponetVue />
+    </div>
   </div>
 </template>
+
 
 <script>
 //Componets
