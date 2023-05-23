@@ -3,15 +3,15 @@
     <!-- <SidebarComponetVue /> -->
     <div class="d-flex flex-column flex-grow">
       <NavbarComponetVue />
-      <div id="adsense-ad"></div> <!-- AdSense広告を表示するためのコンテナを追加 -->
       <router-view />
       <FooterComponetVue />
     </div>
   </div>
 </template>
 
+
 <script>
-//Components
+//Componets
 import NavbarComponetVue from "./views/NavbarComponet.vue";
 import FooterComponetVue from "./views/FooterComponet.vue";
 // import SidebarComponetVue from "./views/SidebarComponet.vue";
@@ -33,37 +33,10 @@ export default {
         audioElement.pause();
       }
     },
-    loadAdSense() {
-      const adContainer = document.getElementById("adsense-ad");
-
-      // Create the AdSense script tag
-      const scriptTag = document.createElement('script');
-      scriptTag.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1063008269994420"
-      scriptTag.async = true;
-      scriptTag.crossOrigin = 'anonymous';
-
-      // Create the AdSense ad unit
-      const adUnit = document.createElement('ins');
-      adUnit.className = 'adsbygoogle';
-      adUnit.style.display = 'block';
-      adUnit.dataset.adClient = "ca-pub-1063008269994420";
-      adUnit.dataset.adSlot = "9195646704";
-      adUnit.dataset.adFormat = "auto";
-      adUnit.dataset.fullWidthResponsive = "true";
-
-      // Append the AdSense ad unit to the script tag
-      scriptTag.appendChild(adUnit);
-
-      // Append the AdSense script tag to the ad container
-      adContainer.appendChild(scriptTag);
-
-      // Initialize the ad
-      (window.adsbygoogle = window.adsbygoogle || []).push({});
-    },
+    toggleMode() {},
   },
   mounted() {
     this.manageBackgroundAudio();
-    this.loadAdSense(); // ページがマウントされた時にAdSenseをロードする
   },
   watch: {
     $route() {
@@ -74,5 +47,42 @@ export default {
 </script>
 
 <style>
-/* Your styles here */
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px;
+}
+
+nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+nav a.router-link-exact-active {
+  color: #42b983;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.min-h-screen {
+  min-height: 100vh;
+}
+
+.flex-grow {
+  flex-grow: 1;
+}
 </style>
