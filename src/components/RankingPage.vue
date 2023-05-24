@@ -1,6 +1,6 @@
 <template>
   <div class="m-6">
-    <div class="font-kokoro text-3xl m-3">
+    <div class="font-kokoro text-3xl m-3 text-center">
       上位10名をここに表彰しております。
     </div>
     <LoadingPartsVue v-if="isLoading" :isLoading="isLoading" />
@@ -16,7 +16,7 @@
           <h2>Name</h2>
           <h2>Score</h2>
         </div>
-        <div class="list-none pl-5">
+        <div class="list-none">
           <div
             v-for="(item, index) in stage.slice(0, 10)"
             :key="index"
@@ -69,9 +69,6 @@ export default {
     LoadingPartsVue,
   },
   computed: {
-    sortedResponse() {
-      return [...this.responseMessage].sort((a, b) => b - a);
-    },
   },
 
   async created() {
@@ -83,10 +80,10 @@ export default {
       try {
         const response = await API.get(apiName, path);
         this.responseMessage = response;
-        // console.log(response);
         this.isLoading = false;
       } catch (error) {
-        // console.error(error);
+        console.error(error);
+        this.isLoading = false;
       }
     }, 2000); // 3秒後にAPIへリクエストを送る
   },
@@ -94,25 +91,5 @@ export default {
 </script>
 
 <style scoped>
-.loading {
-}
 
-.spinner {
-  border: 16px solid #f3f3f3;
-  border-top: 16px solid #3498db;
-  border-radius: 50%;
-  width: 120px;
-  height: 120px;
-  animation: spin 2s linear infinite;
-  margin: 0 auto;
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="bg-gray-500 flex flex-col justify-center items-center min-h-[800px] relative overflow-hidden" style="height: 80vh; overflow: hidden;">
+    <div class="bg-gray-500 flex flex-col justify-center items-center min-h-[40vh] relative overflow-hidden" style="height: 80vh; overflow: hidden;">
       <div v-for="i in 20" :key="i" class="bubble"></div>
 
       <TitleComponent />
