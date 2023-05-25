@@ -1,6 +1,6 @@
 <template>
   <div class="m-6">
-    <div class="font-kokoro text-white">--スコアを登録--</div>
+    <div class="font-kokoro text-white text-center">--スコアを登録--</div>
     <input
       v-model="userName"
       type="text"

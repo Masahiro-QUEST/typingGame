@@ -9,6 +9,8 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
+
 export default {
   data() {
     return {
@@ -16,7 +18,14 @@ export default {
     };
   },
   methods: {
+    ...mapMutations( {
+      setActiveKey: 'setActiveKey',
+    }),
+    resetActiveKey() {
+      this.setActiveKey(null);
+    },
     navigatorToWanStage() {
+      this.resetActiveKey();
       this.$router.push("/");
     },
   },
