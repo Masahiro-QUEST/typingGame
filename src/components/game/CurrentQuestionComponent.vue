@@ -5,7 +5,7 @@
         :src="require(`@/assets/${StageName}/${currentQuestionImage}`)"
         alt="Current cat"
         class="mb-3 cat-image"
-        :style="{ width: '75%' }"
+        :style="{ width: '25vh' }"
       />
       <div v-if="!isLastQuestion" class="text-3xl text-white">
         <div class="font-Kokoro">{{ currentQuestionJapanese }}</div>

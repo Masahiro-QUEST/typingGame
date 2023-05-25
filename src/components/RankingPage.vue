@@ -25,12 +25,12 @@
             <span class="text-4xl">
               <i
                 v-if="index === 0"
-                class="fa-sharp fa-solid fa-chess-king fa-beat"
+                class="fa-sharp fa-solid fa-chess-king fa-flip"
                 style="color: #ffd700"
               ></i>
               <i
                 v-else-if="index === 1"
-                class="fa-sharp fa-solid fa-chess-queen fa-flip"
+                class="fa-sharp fa-solid fa-chess-queen"
                 style="color: #c0c0c0"
               ></i>
               <i
