@@ -5,6 +5,7 @@ import FrontPage from "../components/FrontPage";
 import AuthPage from "../components/AuthPage.vue";
 import PostPage from "../components/PostProject.vue";
 import RankingPage from "../components/RankingPage.vue";
+import AboutPage from "../components/AboutPage.vue"
 //stage
 import NyanStage from "../components/stage/NyanStage.vue";
 import WanStage from "../components/stage/WanStage.vue";
@@ -39,6 +40,11 @@ const routes = [
     path: "/ranking",
     name: "RankingPage",
     component: RankingPage,
+  },
+  {
+    path: "/about",
+    name: "AboutMe",
+    component: AboutPage,
   },
 ];
 

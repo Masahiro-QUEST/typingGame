@@ -19,7 +19,7 @@
       src="https://www10.a8.net/0.gif?a8mat=3T8TXR+1SDWQ+4WPO+5Z6WX"
       alt=""
     />
-    <div>@ 2023 web正人</div>
+    <div @click="navigatorToAbout">@ 2023 web正人</div>
   </footer>
 </template>
 
@@ -28,7 +28,9 @@ export default {
   name: "FooterComponent",
   components: {},
   methods: {
-    toggleMode() {},
+    navigatorToAbout() {
+      this.$router.push("/about");
+    },
   },
 };
 </script>
